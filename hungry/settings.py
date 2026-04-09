@@ -31,6 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
+    'accounts',
+    'orders',
+    'menu',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'hungry.urls'
@@ -115,3 +124,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+SITE_ID = 1
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Burger Restaurant",
+    "site_header": "Burger Restaurant",
+    "site_brand": "🍔 Burger Restaurant",
+    "welcome_sign": "Welcome to Burger Restaurant Admin",
+    "copyright": "Burger Restaurant 2026",}
