@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Menu - Hungry Burger{% endblock %}
+
+{% block content %}
+
+{% if featured %}
+<section class="mb-5">
+    <h2 class="fw-bold mb-4">⭐ Featured</h2>
+    <div class="row g-4">
+        {% for product in featured %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                {% if product.image_url %}
+                <img src="{{ product.image_url.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ product.name }}</h5>
+                    <p class="card-text text-muted">{{ product.description }}</p>
+                    <p class="fw-bold text-danger">kr {{ product.price }}</p>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-dark w-100">Customise & Add</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% for category in categories %}
+<section class="mb-5">
+    <h2 class="fw-bold mb-4">{{ category.name }}</h2>
+    <div class="row g-4">
+        {% for product in products %}
+        {% if product.category == category %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                {% if product.image_url %}
+                <img src="{{ product.image_url.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ product.name }}</h5>
+                    <p class="card-text text-muted">{{ product.description }}</p>
+                    <p class="fw-bold">kr {{ product.price }}</p>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-dark w-100">Customise & Add</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endfor %}
+
+{% endblock %}
+
+# AI-generert
+ 
