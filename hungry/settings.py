@@ -140,9 +140,13 @@ MEDIA_URL= '/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
 #for images 
 
-LOGIN_REDIRECT_URL= '/'
+LOGIN_REDIRECT_URL= '/admin/'
 LOGOUT_REDIRECT_URL= '/'
-LOGIN_URL= '/accounts/login/'
+LOGIN_URL= '/accounts/login'
+
+ACCOUNT_LOGIN_ON_SIGNUP= True
+
+
 
 AUTHENTICATION_BACKENDS= [
     'django.contrib.auth.backends.ModelBackend',
