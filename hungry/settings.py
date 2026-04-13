@@ -128,11 +128,11 @@ STATIC_URL = 'static/'
 SITE_ID = 1
 
 JAZZMIN_SETTINGS = {
-    "site_title": "Burger Restaurant",
-    "site_header": "Burger Restaurant",
-    "site_brand": "🍔 Burger Restaurant",
-    "welcome_sign": "Welcome to Burger Restaurant Admin",
-    "copyright": "Burger Restaurant 2026",}
+    "site_title": "Hungry Burger",
+    "site_header": "Hungry Burger",
+    "site_brand": "🍔 Hungry Burger",
+    "welcome_sign": "Welcome to Hungery Burger Admin",
+    "copyright": "Hungry Burger 2026",}
 
 import os
 
