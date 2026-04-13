@@ -133,3 +133,22 @@ JAZZMIN_SETTINGS = {
     "site_brand": "🍔 Burger Restaurant",
     "welcome_sign": "Welcome to Burger Restaurant Admin",
     "copyright": "Burger Restaurant 2026",}
+
+import os
+
+MEDIA_URL= '/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+#for images 
+
+LOGIN_REDIRECT_URL= '/'
+LOGOUT_REDIRECT_URL= '/'
+LOGIN_URL= '/accounts/login/'
+
+AUTHENTICATION_BACKENDS= [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+ACCOUNT_EMAIL_REQUIRED= False
+ACCOUNT_USERNAME_REQUIRED= True
+ACCOUNT_AUTHENTICATION_METHOD= 'username' 
