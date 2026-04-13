@@ -63,7 +63,7 @@ ROOT_URLCONF = 'hungry.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'hungry' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
