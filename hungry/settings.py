@@ -44,8 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
+    'django.contrib.staticfiles',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,8 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
-]
+    'allauth.account.middleware.AccountMiddleware',]
 
 ROOT_URLCONF = 'hungry.urls'
 
@@ -72,8 +70,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
-    },
-]
+    },]
 
 WSGI_APPLICATION = 'hungry.wsgi.application'
 
@@ -85,8 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+    }}
 
 
 # Password validation
@@ -104,8 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+    },]
 
 
 # Internationalization
@@ -150,9 +145,9 @@ ACCOUNT_LOGIN_ON_SIGNUP= True
 
 AUTHENTICATION_BACKENDS= [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
+    'allauth.account.auth_backends.AuthenticationBackend',]
 
-ACCOUNT_EMAIL_REQUIRED= False
-ACCOUNT_USERNAME_REQUIRED= True
-ACCOUNT_AUTHENTICATION_METHOD= 'username' 
+
+
+ACCOUNT_LOGIN_METHODS= {'username'}
+ACCOUNT_SIGNUP_FIELDS= ['username*', 'password1*', 'password2*']
