@@ -77,3 +77,6 @@ class ProductOption(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     option = models.ForeignKey(OptionGroup, on_delete=models.CASCADE)
     price_override = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    
+    def __str__(self):
+        return f"{self.product} - {self.option}"

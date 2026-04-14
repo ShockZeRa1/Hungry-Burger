@@ -19,7 +19,7 @@
         <h4 class="fw-bold mb-4">kr {{ product.price }}</h4>
 
         <!-- Customization Form -->
-        <form method="POST" action="#">
+        <form method="POST" action="{% url 'product_detail' product.id %}">
             {% csrf_token %}
 
             {% for group, options in option_groups.items %}
@@ -102,5 +102,3 @@
 </script>
 
 {% endblock %}
-
-#AI-genrert HTML
