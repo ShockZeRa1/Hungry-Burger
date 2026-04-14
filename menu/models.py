@@ -24,7 +24,7 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False)
     image_url = models.ImageField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
 
     class Meta:
         verbose_name_plural = "Products"
