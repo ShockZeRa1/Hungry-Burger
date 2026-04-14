@@ -18,7 +18,7 @@
                     <h5 class="card-title fw-bold">{{ product.name }}</h5>
                     <p class="card-text text-muted">{{ product.description }}</p>
                     <p class="fw-bold text-danger">kr {{ product.price }}</p>
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-dark w-100">Customise & Add</a>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-dark w-100">Add to Cart</a>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                     <h5 class="card-title fw-bold">{{ product.name }}</h5>
                     <p class="card-text text-muted">{{ product.description }}</p>
                     <p class="fw-bold">kr {{ product.price }}</p>
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-dark w-100">Customise & Add</a>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-dark w-100">Add to Cart</a>
                 </div>
             </div>
         </div>
