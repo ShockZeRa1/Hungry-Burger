@@ -32,7 +32,10 @@
                            type="checkbox"
                            name="option_{{ option.id }}"
                            id="option_{{ option.id }}"
-                           value="{{ option.id }}">
+                           value="{{ option.id }}"
+                           data-price= "{{option.extra_price}}">
+                           
+
                     <label class="form-check-label" for="option_{{ option.id }}">
                         {{ option.name }}
                         {% if option.extra_price > 0 %}

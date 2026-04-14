@@ -24,11 +24,26 @@ def product_detail(request, product_id):
 
     option_groups= {}
     for po in product_options:
-        group= po.option  # po.option is the OptionGroup FK
+        group= po.option
         if group not in option_groups:
-            option_groups[group]= group.option_set.filter(is_active=True)  # fixed: option_set not options
+            option_groups[group]= group.option_set.filter(is_active=True)
+
+    if request.method == 'POST':
+        form= CustomisationForm(request.POST)
+        if form.is_valid():
+            quantity= form.cleaned_data['quantity']
+            # collect selected option ids from POST
+            selected_options= []
+            for key, val in request.POST.items():
+                if key.startswith('option_'):
+                    selected_options.append(int(val))
+            # TODO: TM2 will use quantity + selected_options to add to cart
+            return redirect('menu')
+    else:
+        form= CustomisationForm()
 
     context= {
         'product': product,
-        'option_groups': option_groups,}
+        'option_groups': option_groups,
+        'form': form,}
     return render(request, 'menu/product_detail.html', context) 
