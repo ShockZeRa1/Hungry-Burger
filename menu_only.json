@@ -1,0 +1,663 @@
+[
+  {
+    "model": "menu.category",
+    "pk": 1,
+    "fields": {
+      "name": "Meal Deals",
+      "sort_order": 1,
+      "is_active": true
+    }
+  },
+  {
+    "model": "menu.category",
+    "pk": 2,
+    "fields": {
+      "name": "Burgers",
+      "sort_order": 2,
+      "is_active": true
+    }
+  },
+  {
+    "model": "menu.category",
+    "pk": 3,
+    "fields": {
+      "name": "Fries & Loaded Fries",
+      "sort_order": 5,
+      "is_active": true
+    }
+  },
+  {
+    "model": "menu.category",
+    "pk": 4,
+    "fields": {
+      "name": "Drinks",
+      "sort_order": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "menu.category",
+    "pk": 5,
+    "fields": {
+      "name": "Dips",
+      "sort_order": 4,
+      "is_active": true
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 1,
+    "fields": {
+      "name": "Classic Burger Meal",
+      "description": "Beef patty, tomatoes, onions, lettuce and signature house dressing",
+      "price": "240.00",
+      "is_active": true,
+      "is_featured": true,
+      "image_url": "cc.png",
+      "created_at": "2026-04-07T18:43:28.420Z",
+      "category": 1
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 2,
+    "fields": {
+      "name": "Cheese Burger Meal",
+      "description": "Beef patty, onions, pickles, ketchup and mustard",
+      "price": "235.00",
+      "is_active": true,
+      "is_featured": true,
+      "image_url": "ch.png",
+      "created_at": "2026-04-07T18:44:25.564Z",
+      "category": 1
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 3,
+    "fields": {
+      "name": "BBQ Burger Meal",
+      "description": "Beef patty, pickled onions, tomatoes & sweet barbeque sauce",
+      "price": "255.00",
+      "is_active": true,
+      "is_featured": true,
+      "image_url": "bbq.png",
+      "created_at": "2026-04-07T18:45:43.389Z",
+      "category": 1
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 4,
+    "fields": {
+      "name": "Classic Burger",
+      "description": "Beef patty, tomatoes, onions, lettuce and signature house dressing",
+      "price": "150.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "cc_icjpjDK.png",
+      "created_at": "2026-04-07T18:49:36.098Z",
+      "category": 2
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 5,
+    "fields": {
+      "name": "Cheese Burger",
+      "description": "Beef patty, onions, pickles, ketchup and mustard",
+      "price": "145.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "ch_jxxe3Oq.png",
+      "created_at": "2026-04-07T18:50:26.063Z",
+      "category": 2
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 6,
+    "fields": {
+      "name": "BBQ Burger",
+      "description": "Beef patty, pickled onions, tomatoes & sweet barbeque sauce",
+      "price": "165.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "bbq_AOcwoqm.png",
+      "created_at": "2026-04-07T18:51:06.642Z",
+      "category": 2
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 7,
+    "fields": {
+      "name": "Coke",
+      "description": "Cold & refreshing drink",
+      "price": "45.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "coke.png",
+      "created_at": "2026-04-07T18:55:05.209Z",
+      "category": 4
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 8,
+    "fields": {
+      "name": "Sprite",
+      "description": "Cold & refreshing drink",
+      "price": "45.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "sbrite.png",
+      "created_at": "2026-04-07T18:55:32.855Z",
+      "category": 4
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 9,
+    "fields": {
+      "name": "Fanta Exotic",
+      "description": "Cold & refreshing drink",
+      "price": "45.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "phanta.png",
+      "created_at": "2026-04-07T18:55:51.029Z",
+      "category": 4
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 10,
+    "fields": {
+      "name": "Aioli",
+      "description": "Creamy sauce made of garlic and olive oil",
+      "price": "25.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "aioli_real.jpg",
+      "created_at": "2026-04-07T19:02:24.659Z",
+      "category": 5
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 11,
+    "fields": {
+      "name": "Sriracha Mayo",
+      "description": "Spicy, creamy sauce",
+      "price": "35.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "sriracha_mayo_real.jpg",
+      "created_at": "2026-04-07T19:03:33.953Z",
+      "category": 5
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 12,
+    "fields": {
+      "name": "Mild Ranch",
+      "description": "Mild creamy sauce",
+      "price": "35.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "herby_real.jpg",
+      "created_at": "2026-04-07T19:04:05.699Z",
+      "category": 5
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 13,
+    "fields": {
+      "name": "Crinkle-cut Fries",
+      "description": "Crispy, double fried",
+      "price": "55.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "wavy_cries.png",
+      "created_at": "2026-04-07T19:12:43.922Z",
+      "category": 3
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 14,
+    "fields": {
+      "name": "Loaded Parmesan Fries",
+      "description": "Crispy fries topped with aioli, sriracha mayo, parmesan and beef jerky",
+      "price": "100.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "parmesan_fries.png",
+      "created_at": "2026-04-07T19:19:03.419Z",
+      "category": 3
+    }
+  },
+  {
+    "model": "menu.product",
+    "pk": 15,
+    "fields": {
+      "name": "Loaded Chicken Fries",
+      "description": "Crispy fries topped with sriracha mayo and sliced fried chicken",
+      "price": "150.00",
+      "is_active": true,
+      "is_featured": false,
+      "image_url": "loaded_chicken.jfif",
+      "created_at": "2026-04-07T19:19:54.662Z",
+      "category": 3
+    }
+  },
+  {
+    "model": "menu.optiongroup",
+    "pk": 1,
+    "fields": {
+      "name": "Upgrade Your Burger",
+      "selection_type": "multiple",
+      "min_select": 0,
+      "max_select": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "menu.optiongroup",
+    "pk": 2,
+    "fields": {
+      "name": "Upgrade Your Fries",
+      "selection_type": "multiple",
+      "min_select": 0,
+      "max_select": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "menu.optiongroup",
+    "pk": 3,
+    "fields": {
+      "name": "Add Side Snacks",
+      "selection_type": "multiple",
+      "min_select": 0,
+      "max_select": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "menu.optiongroup",
+    "pk": 4,
+    "fields": {
+      "name": "Add Dips",
+      "selection_type": "multiple",
+      "min_select": 0,
+      "max_select": 3,
+      "is_active": true
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 1,
+    "fields": {
+      "name": "Extra Patty",
+      "extra_price": "40.00",
+      "is_active": true,
+      "option_group": 1
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 2,
+    "fields": {
+      "name": "Extra Cheese",
+      "extra_price": "20.00",
+      "is_active": true,
+      "option_group": 1
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 3,
+    "fields": {
+      "name": "Add Jalapenos",
+      "extra_price": "15.00",
+      "is_active": true,
+      "option_group": 1
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 5,
+    "fields": {
+      "name": "Loaded Chicken Fries",
+      "extra_price": "95.00",
+      "is_active": true,
+      "option_group": 2
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 6,
+    "fields": {
+      "name": "Loaded Parmesan Fries",
+      "extra_price": "45.00",
+      "is_active": true,
+      "option_group": 2
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 7,
+    "fields": {
+      "name": "Chili Cheese",
+      "extra_price": "55.00",
+      "is_active": true,
+      "option_group": 3
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 8,
+    "fields": {
+      "name": "Onion Rings",
+      "extra_price": "45.00",
+      "is_active": true,
+      "option_group": 3
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 9,
+    "fields": {
+      "name": "Chicken Bites",
+      "extra_price": "95.00",
+      "is_active": true,
+      "option_group": 3
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 10,
+    "fields": {
+      "name": "Aioli",
+      "extra_price": "25.00",
+      "is_active": true,
+      "option_group": 4
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 11,
+    "fields": {
+      "name": "Sriracha Mayo",
+      "extra_price": "35.00",
+      "is_active": true,
+      "option_group": 4
+    }
+  },
+  {
+    "model": "menu.option",
+    "pk": 12,
+    "fields": {
+      "name": "Mild Ranch",
+      "extra_price": "35.00",
+      "is_active": true,
+      "option_group": 4
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "option": 1,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 2,
+    "fields": {
+      "product": 1,
+      "option": 2,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 3,
+    "fields": {
+      "product": 1,
+      "option": 3,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 4,
+    "fields": {
+      "product": 1,
+      "option": 4,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 5,
+    "fields": {
+      "product": 2,
+      "option": 1,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 6,
+    "fields": {
+      "product": 2,
+      "option": 2,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 7,
+    "fields": {
+      "product": 2,
+      "option": 3,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 8,
+    "fields": {
+      "product": 2,
+      "option": 4,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 9,
+    "fields": {
+      "product": 3,
+      "option": 1,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 10,
+    "fields": {
+      "product": 3,
+      "option": 2,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 11,
+    "fields": {
+      "product": 3,
+      "option": 3,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 12,
+    "fields": {
+      "product": 3,
+      "option": 4,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 13,
+    "fields": {
+      "product": 4,
+      "option": 1,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 14,
+    "fields": {
+      "product": 4,
+      "option": 3,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 15,
+    "fields": {
+      "product": 4,
+      "option": 4,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 16,
+    "fields": {
+      "product": 5,
+      "option": 1,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 17,
+    "fields": {
+      "product": 5,
+      "option": 3,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 18,
+    "fields": {
+      "product": 5,
+      "option": 4,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 19,
+    "fields": {
+      "product": 6,
+      "option": 1,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 20,
+    "fields": {
+      "product": 6,
+      "option": 3,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 21,
+    "fields": {
+      "product": 6,
+      "option": 4,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 22,
+    "fields": {
+      "product": 13,
+      "option": 2,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 23,
+    "fields": {
+      "product": 15,
+      "option": 3,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 24,
+    "fields": {
+      "product": 15,
+      "option": 4,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 25,
+    "fields": {
+      "product": 14,
+      "option": 3,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 26,
+    "fields": {
+      "product": 14,
+      "option": 4,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 27,
+    "fields": {
+      "product": 13,
+      "option": 3,
+      "price_override": null
+    }
+  },
+  {
+    "model": "menu.productoption",
+    "pk": 28,
+    "fields": {
+      "product": 13,
+      "option": 4,
+      "price_override": null
+    }
+  }
+]
