@@ -21,6 +21,13 @@
         <!-- Customization Form -->
         <form method="POST" action="{% url 'product_detail' product.id %}">
             {% csrf_token %}
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                {{ form.errors }}
+            </div>
+            {% endif %}
+
+            
 
             {% for group, options in option_groups.items %}
             <div class="mb-4">

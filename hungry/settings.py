@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -129,7 +130,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Welcome to Hungery Burger Admin",
     "copyright": "Hungry Burger 2026",}
 
-import os
+
 
 MEDIA_URL= '/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
