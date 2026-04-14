@@ -3,36 +3,32 @@
 {% block title %}{{ product.name }} - Hungry Burger{% endblock %}
 
 {% block content %}
-<div class="row">
+<div class="row g-5">
 
-    <!-- Product Image and Info -->
+    <!-- Product Image -->
     <div class="col-md-6">
         {% if product.image_url %}
-        <img src="{{ product.image_url.url }}" class="img-fluid rounded" alt="{{ product.name }}" style="width: 100%; height: 400px; object-fit: contain;">
+        <img src="{{ product.image_url.url }}" class="product-detail-img" alt="{{ product.name }}">
         {% endif %}
     </div>
 
-    <!-- Product Details and Customization -->
+    <!-- Product Details -->
     <div class="col-md-6">
-        <h1 class="fw-bold">{{ product.name }}</h1>
-        <p class="text-muted">{{ product.description }}</p>
-        <h4 class="fw-bold mb-4">kr {{ product.price }}</h4>
+        <h1 class="fw-bold mb-2">{{ product.name }}</h1>
+        <p class="text-muted mb-3">{{ product.description }}</p>
+        <p class="product-detail-price mb-4">kr {{ product.price }}</p>
 
-        <!-- Customization Form -->
+        <!-- Customisation Form -->
         <form method="POST" action="{% url 'product_detail' product.id %}">
             {% csrf_token %}
             {% if form.errors %}
-            <div class="alert alert-danger">
-                {{ form.errors }}
-            </div>
+            <div class="alert alert-danger">{{ form.errors }}</div>
             {% endif %}
-
-            
 
             {% for group, options in option_groups.items %}
             <div class="mb-4">
-                <h5 class="fw-bold">{{ group.name }}</h5>
-                <p class="text-muted small">Select up to {{ group.max_select }}</p>
+                <h5 class="option-group-title">{{ group.name }}</h5>
+                <p class="option-group-subtitle">Select up to {{ group.max_select }}</p>
                 {% for option in options %}
                 <div class="form-check">
                     <input class="form-check-input"
@@ -40,9 +36,7 @@
                            name="option_{{ option.id }}"
                            id="option_{{ option.id }}"
                            value="{{ option.id }}"
-                           data-price= "{{option.extra_price}}">
-                           
-
+                           data-price="{{ option.extra_price }}">
                     <label class="form-check-label" for="option_{{ option.id }}">
                         {{ option.name }}
                         {% if option.extra_price > 0 %}
@@ -56,33 +50,28 @@
 
             <!-- Quantity -->
             <div class="mb-4">
-                <h5 class="fw-bold">Quantity</h5>
+                <h5 class="option-group-title">Quantity</h5>
                 <div class="d-flex align-items-center gap-3">
-                    <button type="button" class="btn btn-outline-dark" onclick="changeQty(-1)">-</button>
+                    <button type="button" class="btn btn-outline-secondary px-3" onclick="changeQty(-1)">-</button>
                     <span id="qty" class="fw-bold fs-5">1</span>
-                    <button type="button" class="btn btn-outline-dark" onclick="changeQty(1)">+</button>
+                    <button type="button" class="btn btn-outline-secondary px-3" onclick="changeQty(1)">+</button>
                     <input type="hidden" name="quantity" id="quantity_input" value="1">
                 </div>
             </div>
 
-            <!-- Total Price -->
+            <!-- Total -->
             <div class="mb-4">
-                <h5 class="fw-bold">Total: kr <span id="total_price">{{ product.price }}</span></h5>
+                <p class="total-display">Total: kr <span id="total_price">{{ product.price }}</span></p>
             </div>
 
-            <!-- Add to Cart Button -->
-            <button type="submit" class="btn btn-dark w-100 py-3 fw-bold">
-                Add to Cart
-            </button>
+            <button type="submit" class="btn btn-brand mb-2">Add to Cart</button>
         </form>
 
-        <!-- Back to Menu -->
-        <a href="{% url 'menu' %}" class="btn btn-outline-dark w-100 mt-3">← Back to Menu</a>
+        <a href="{% url 'menu' %}" class="btn btn-outline-brand mt-2">← Back to Menu</a>
     </div>
 </div>
 
 <script>
-    // quantity counter
     function changeQty(change) {
         let qty = parseInt(document.getElementById('qty').innerText);
         qty = Math.max(1, qty + change);
@@ -91,7 +80,6 @@
         updateTotal();
     }
 
-    // update total price when options selected
     const basePrice = {{ product.price }};
 
     function updateTotal() {

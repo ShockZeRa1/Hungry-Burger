@@ -4,21 +4,37 @@
 
 {% block content %}
 
+<!-- Hero Section -->
+<div class="hero">
+    <div class="hero-text">
+        <p class="hero-label">The Hungry Burger</p>
+        <h1>Crafted with<br><span>Fire & Flavour</span></h1>
+        <p>Fresh ingredients, bold flavours. Experience our burgers and unique sides, made to order!</p>
+    </div>
+    {% if featured %}
+    <div class="hero-image">
+        <img src="{{ featured.0.image_url.url }}" alt="{{ featured.0.name }}">
+    </div>
+    {% endif %}
+</div>
+
+<!-- Featured Section -->
 {% if featured %}
 <section class="mb-5">
-    <h2 class="fw-bold mb-4">⭐ Featured</h2>
+    <h2 class="section-heading">Featured</h2>
     <div class="row g-4">
         {% for product in featured %}
         <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
+            <div class="product-card card h-100 position-relative">
+                <span class="featured-badge">Featured</span>
                 {% if product.image_url %}
-                <img src="{{ product.image_url.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 250px; object-fit: contain;">
+                <img src="{{ product.image_url.url }}" alt="{{ product.name }}">
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">{{ product.name }}</h5>
-                    <p class="card-text text-muted">{{ product.description }}</p>
-                    <p class="fw-bold text-danger">kr {{ product.price }}</p>
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-dark w-100">Add to Cart</a>
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="price">kr {{ product.price }}</p>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-brand">Add to Cart</a>
                 </div>
             </div>
         </div>
@@ -27,22 +43,23 @@
 </section>
 {% endif %}
 
+<!-- Category Sections -->
 {% for category in categories %}
 <section class="mb-5">
-    <h2 class="fw-bold mb-4">{{ category.name }}</h2>
+    <h2 class="section-heading">{{ category.name }}</h2>
     <div class="row g-4">
         {% for product in products %}
         {% if product.category == category %}
         <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
+            <div class="product-card card h-100">
                 {% if product.image_url %}
-                <img src="{{ product.image_url.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 250px; object-fit: contain;">
+                <img src="{{ product.image_url.url }}" alt="{{ product.name }}">
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">{{ product.name }}</h5>
-                    <p class="card-text text-muted">{{ product.description }}</p>
-                    <p class="fw-bold">kr {{ product.price }}</p>
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-dark w-100">Add to Cart</a>
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="price">kr {{ product.price }}</p>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-brand">Add to Cart</a>
                 </div>
             </div>
         </div>
@@ -53,5 +70,3 @@
 {% endfor %}
 
 {% endblock %}
-
- 
