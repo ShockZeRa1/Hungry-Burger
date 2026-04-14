@@ -18,7 +18,7 @@ class Category(models.Model):
 # The individual items that are sold
 class Product(models.Model):
     name = models.CharField(max_length=255, unique=True) # Assuming each product has a unique name
-    description = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     is_active = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
