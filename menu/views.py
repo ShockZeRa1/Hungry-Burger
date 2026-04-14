@@ -10,7 +10,7 @@ from django.contrib import messages
 
 
 def menu(request):
-    categories= Category.objects.filter(is_active=True)
+    categories= Category.objects.filter(is_active=True).order_by('sort_order')
     products= Product.objects.filter(is_active=True)
     featured= Product.objects.filter(is_active=True, is_featured=True)
 
