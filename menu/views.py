@@ -24,11 +24,11 @@ def product_detail(request, product_id):
 
     option_groups= {}
     for po in product_options:
-        group= po.option
+        group= po.option  # po.option is the OptionGroup FK
         if group not in option_groups:
-            option_groups[group]= group.options.filter(is_active=True)
+            option_groups[group]= group.option_set.filter(is_active=True)  # fixed: option_set not options
 
     context= {
         'product': product,
         'option_groups': option_groups,}
-    return render(request, 'menu/product_detail.html', context)
+    return render(request, 'menu/product_detail.html', context) 
