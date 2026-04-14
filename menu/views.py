@@ -2,9 +2,10 @@
 
 # Create your views here.
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from menu.models import Category, Product
 from menu.forms import CustomisationForm
+from django.contrib import messages
 
 
 
@@ -40,6 +41,7 @@ def product_detail(request, product_id):
                 if key.startswith('option_'):
                     selected_options.append(int(val))
             # TODO: TM2 will use quantity + selected_options to add to cart
+            messages.success(request, f'{product.name} added to cart ✔') #smoother transition to directing to menu
             return redirect('menu')
     else:
         form= CustomisationForm()
