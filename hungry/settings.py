@@ -45,8 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
+    'django.contrib.staticfiles',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,8 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
-]
+    'allauth.account.middleware.AccountMiddleware',]
 
 ROOT_URLCONF = 'hungry.urls'
 
@@ -73,8 +71,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
-    },
-]
+    },]
 
 WSGI_APPLICATION = 'hungry.wsgi.application'
 
@@ -86,8 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+    }}
 
 
 # Password validation
@@ -105,8 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+    },]
 
 
 # Internationalization
@@ -125,6 +120,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'menu' / 'static']
+
 
 SITE_ID = 1
 
@@ -134,6 +131,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "🍔 Hungry Burger",
     "welcome_sign": "Welcome to Hungery Burger Admin",
     "copyright": "Hungry Burger 2026",}
+
 
 
 MEDIA_URL= '/media/'
@@ -150,8 +148,9 @@ ACCOUNT_LOGIN_ON_SIGNUP= True
 
 AUTHENTICATION_BACKENDS= [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
+    'allauth.account.auth_backends.AuthenticationBackend',]
+
+
 
 ACCOUNT_LOGIN_METHODS= {'username'}
 ACCOUNT_SIGNUP_FIELDS= ['username*', 'password1*', 'password2*']

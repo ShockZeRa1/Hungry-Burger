@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} - Hungry Burger{% endblock %}
+
+{% block content %}
+<div class="row g-5">
+
+    <!-- Product Image -->
+    <div class="col-md-6">
+        {% if product.image_url %}
+        <img src="{{ product.image_url.url }}" class="product-detail-img" alt="{{ product.name }}">
+        {% endif %}
+    </div>
+
+    <!-- Product Details -->
+    <div class="col-md-6">
+        <h1 class="fw-bold mb-2">{{ product.name }}</h1>
+        <p class="text-muted mb-3">{{ product.description }}</p>
+        <p class="product-detail-price mb-4">kr {{ product.price }}</p>
+
+        <!-- Customisation Form -->
+        <form method="POST" action="{% url 'product_detail' product.id %}">
+            {% csrf_token %}
+            {% if form.errors %}
+            <div class="alert alert-danger">{{ form.errors }}</div>
+            {% endif %}
+
+            {% for group, options in option_groups.items %}
+            <div class="mb-4">
+                <h5 class="option-group-title">{{ group.name }}</h5>
+                <p class="option-group-subtitle">Select up to {{ group.max_select }}</p>
+                {% for option in options %}
+                <div class="form-check">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           name="option_{{ option.id }}"
+                           id="option_{{ option.id }}"
+                           value="{{ option.id }}"
+                           data-price="{{ option.extra_price }}">
+                    <label class="form-check-label" for="option_{{ option.id }}">
+                        {{ option.name }}
+                        {% if option.extra_price > 0 %}
+                        <span class="text-muted">+kr {{ option.extra_price }}</span>
+                        {% endif %}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <!-- Quantity -->
+            <div class="mb-4">
+                <h5 class="option-group-title">Quantity</h5>
+                <div class="d-flex align-items-center gap-3">
+                    <button type="button" class="btn btn-outline-secondary px-3" onclick="changeQty(-1)">-</button>
+                    <span id="qty" class="fw-bold fs-5">1</span>
+                    <button type="button" class="btn btn-outline-secondary px-3" onclick="changeQty(1)">+</button>
+                    <input type="hidden" name="quantity" id="quantity_input" value="1">
+                </div>
+            </div>
+
+            <!-- Total -->
+            <div class="mb-4">
+                <p class="total-display">Total: kr <span id="total_price">{{ product.price }}</span></p>
+            </div>
+
+            <button type="submit" class="btn btn-brand mb-2">Add to Cart</button>
+        </form>
+
+        <a href="{% url 'menu' %}" class="btn btn-outline-brand mt-2">← Back to Menu</a>
+    </div>
+</div>
+
+<script>
+    function changeQty(change) {
+        let qty = parseInt(document.getElementById('qty').innerText);
+        qty = Math.max(1, qty + change);
+        document.getElementById('qty').innerText = qty;
+        document.getElementById('quantity_input').value = qty;
+        updateTotal();
+    }
+
+    const basePrice = {{ product.price }};
+
+    function updateTotal() {
+        let extra = 0;
+        let qty = parseInt(document.getElementById('quantity_input').value);
+        document.querySelectorAll('input[type=checkbox]:checked').forEach(cb => {
+            extra += parseFloat(cb.dataset.price || 0);
+        });
+        document.getElementById('total_price').innerText = ((basePrice + extra) * qty).toFixed(2);
+    }
+
+    document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+        cb.addEventListener('change', updateTotal);
+    });
+</script>
+
+{% endblock %}
