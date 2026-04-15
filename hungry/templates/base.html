@@ -23,10 +23,10 @@
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" href="{% url 'cart' %}">Cart</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Past Orders</a>
+                        <a class="nav-link" href="{% url 'past_orders' %}">Past Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>

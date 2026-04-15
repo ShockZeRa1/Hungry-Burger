@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout - Hungry Burger{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Checkout</h1>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        {% for item in cart_items %}
+        <div class="border-bottom py-3">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h5 class="mb-1">{{ item.product.name }}</h5>
+                    <p class="mb-1">Quantity: {{ item.quantity }}</p>
+
+                    {% if item.options %}
+                    <ul class="mb-0">
+                        {% for option in item.options %}
+                        <li>{{ option.name }} (+kr {{ option.extra_price }})</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="fw-bold">
+                    kr {{ item.line_total }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="d-flex justify-content-between align-items-center pt-4">
+            <h4 class="mb-0">Grand Total</h4>
+            <h4 class="mb-0">kr {{ grand_total }}</h4>
+        </div>
+
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Place Order</button>
+            <a href="{% url 'cart' %}" class="btn btn-outline-secondary">Back to Cart</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

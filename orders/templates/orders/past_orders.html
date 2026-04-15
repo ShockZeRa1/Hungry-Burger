@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Past Orders - Hungry Burger{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Past Orders</h1>
+
+{% if orders %}
+    {% for order in orders %}
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="mb-1">Order #{{ order.id }}</h5>
+                    <p class="mb-1 text-muted">{{ order.created_at }}</p>
+                    <p class="mb-0">Status: <strong>{{ order.status.name }}</strong></p>
+                </div>
+                <div class="text-end">
+                    <h5 class="mb-3">kr {{ order.total_amount }}</h5>
+                    <a href="{% url 'reorder' order.id %}" class="btn btn-outline-primary">Re-order</a>
+                </div>
+            </div>
+
+            {% for item in order.orderitem_set.all %}
+            <div class="border-top pt-3 mt-3">
+                <h6 class="mb-1">{{ item.quantity }} x {{ item.product_name_snapshot }}</h6>
+                <p class="mb-1 text-muted">Base price: kr {{ item.unit_price_snapshot }}</p>
+
+                {% if item.orderitemoption_set.all %}
+                <ul class="mb-0">
+                    {% for option in item.orderitemoption_set.all %}
+                    <li>{{ option.option_name_snapshot }} (+kr {{ option.extra_price_snapshot }})</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+<div class="alert alert-info">
+    You have no past orders yet.
+</div>
+{% endif %}
+{% endblock %}
