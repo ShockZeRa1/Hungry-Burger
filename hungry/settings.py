@@ -153,4 +153,12 @@ AUTHENTICATION_BACKENDS= [
 
 
 ACCOUNT_LOGIN_METHODS= {'username'}
-ACCOUNT_SIGNUP_FIELDS= ['username*', 'password1*', 'password2*']
+
+# Shows the fields when signing up
+ACCOUNT_SIGNUP_FIELDS= ['username*', 'email*','password1*', 'password2*']
+
+ACCOUNT_SIGNUP_FORM_CLASS= 'accounts.forms.SignUpForm'
+
+# This will ask for email when signing up and signing in
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
