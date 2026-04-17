@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Sign Up – Hungry Burger{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+
+    <div class="auth-card">
+      <div class="auth-header">
+        <img src="{% static 'menu/LOGO.png' %}" alt="Hungry Burger" class="auth-logo">
+        <h1 class="auth-title">Create an account</h1>
+        <p class="auth-subtitle">Join us and start ordering</p>
+      </div>
+
+      <div class="auth-body">
+        <form method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+
+          {% if form.errors %}
+          <div class="auth-alert">
+            Please correct the errors below.
+          </div>
+          {% endif %}
+
+          {% for field in form %}
+          <div class="auth-field">
+            <label class="auth-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+            <div class="auth-help">{{ field.help_text }}</div>
+            {% endif %}
+            {% if field.errors %}
+            <div class="auth-field-error">{{ field.errors|join:", " }}</div>
+            {% endif %}
+          </div>
+          {% endfor %}
+
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+          {% endif %}
+
+          <button type="submit" class="btn-auth">Create Account</button>
+        </form>
+
+        <p class="auth-switch">
+          Already have an account? <a href="{% url 'account_login' %}">Sign in</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.auth-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  overflow: hidden;
+  margin: 24px auto;
+}
+
+.auth-header {
+  background: linear-gradient(135deg, #e67e22 0%, #ca6f1e 100%);
+  padding: 36px 40px 28px;
+  text-align: center;
+}
+
+.auth-logo {
+  height: 64px;
+  width: auto;
+  margin-bottom: 12px;
+  filter: brightness(0) invert(1);
+}
+
+.auth-title {
+  color: #ffffff;
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.auth-subtitle {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.auth-body {
+  padding: 32px 40px 36px;
+}
+
+.auth-alert {
+  background: #fff3cd;
+  border-left: 4px solid #e67e22;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: #856404;
+  margin-bottom: 20px;
+}
+
+.auth-field {
+  margin-bottom: 18px;
+}
+
+.auth-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.auth-field input,
+.auth-field select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: 'Segoe UI', sans-serif;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.auth-field input:focus,
+.auth-field select:focus {
+  border-color: #e67e22;
+  box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.15);
+}
+
+.auth-help {
+  font-size: 0.78rem;
+  color: #6c757d;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.auth-field-error {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.btn-auth {
+  width: 100%;
+  padding: 12px;
+  background-color: #e67e22;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 8px;
+}
+
+.btn-auth:hover {
+  background-color: #ca6f1e;
+  transform: translateY(-1px);
+}
+
+.btn-auth:active {
+  transform: translateY(0);
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 0;
+}
+
+.auth-switch a {
+  color: #e67e22;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+</style>
+{% endblock %}
