@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Cart - Hungry Burger{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Your Cart</h1>
+
+{% if cart_items %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        {% for item in cart_items %}
+        <div class="border-bottom py-3">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                    <h5 class="mb-1">{{ item.product.name }}</h5>
+                    <p class="mb-1 text-muted">Unit Price: kr {{ item.unit_price }}</p>
+
+                    {% if item.options %}
+                    <ul class="mb-2">
+                        {% for option in item.options %}
+                        <li>{{ option.name }} (+kr {{ option.extra_price }})</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <div class="text-end">
+                    <p class="fw-bold mb-2">kr {{ item.line_total }}</p>
+
+                    <form method="POST" action="{% url 'remove_cart_item' item.key %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                    </form>
+                </div>
+            </div>
+
+            <form method="POST" action="{% url 'update_cart_item' item.key %}" class="d-flex align-items-center gap-2">
+                {% csrf_token %}
+                <label for="quantity_{{ forloop.counter }}">Quantity</label>
+                <input
+                    type="number"
+                    min="1"
+                    name="quantity"
+                    id="quantity_{{ forloop.counter }}"
+                    value="{{ item.quantity }}"
+                    class="form-control"
+                    style="max-width: 100px;"
+                >
+                <button type="submit" class="btn btn-outline-secondary">Update</button>
+            </form>
+        </div>
+        {% endfor %}
+
+        <div class="d-flex justify-content-between align-items-center pt-4">
+            <h4 class="mb-0">Total</h4>
+            <h4 class="mb-0">kr {{ grand_total }}</h4>
+        </div>
+
+        <div class="mt-4 d-flex gap-2">
+            <a href="{% url 'menu' %}" class="btn btn-outline-secondary">Continue Shopping</a>
+            <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="alert alert-info">
+    Your cart is empty.
+</div>
+<a href="{% url 'menu' %}" class="btn btn-primary">Go to Menu</a>
+{% endif %}
+{% endblock %}

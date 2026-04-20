@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'orders.context_processors.floating_cart',
             ],
         },
     },]
@@ -153,12 +154,8 @@ AUTHENTICATION_BACKENDS= [
 
 
 ACCOUNT_LOGIN_METHODS= {'username'}
-
-# Shows the fields when signing up
-ACCOUNT_SIGNUP_FIELDS= ['username*', 'email*','password1*', 'password2*']
+ACCOUNT_SIGNUP_FIELDS= ['username*', 'email*', 'password1*', 'password2*']
 
 ACCOUNT_SIGNUP_FORM_CLASS= 'accounts.forms.SignUpForm'
-
-# This will ask for email when signing up and signing in
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
