@@ -33,10 +33,11 @@ body {
     letter-spacing: 0.3px;
 }
 
-.navbar-brand img {
-    height: 180px;
+.navbar-brand img,
+.site-logo {
+    height: 80px;
     width: auto;
-    margin: -68px 0;
+    margin: 0;
 }
 
 .nav-link {
@@ -274,3 +275,128 @@ footer {
     }
 }
 
+.floating-cart-wrapper {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1050;
+}
+
+.floating-cart-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f28c28;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 18px;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-cart-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+.floating-cart-icon {
+    font-size: 1.2rem;
+}
+
+.floating-cart-panel {
+    position: absolute;
+    right: 0;
+    bottom: 72px;
+    width: 320px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+}
+
+.floating-cart-panel.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.floating-cart-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 18px;
+    border-bottom: 1px solid #eee;
+}
+
+.floating-cart-panel-header h5 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.floating-cart-close {
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.floating-cart-panel-body {
+    padding: 18px;
+}
+
+.floating-cart-mini-items {
+    margin-bottom: 16px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.floating-cart-mini-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.mini-item-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.mini-item-meta {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.mini-item-price {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.floating-cart-actions {
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .floating-cart-wrapper {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .floating-cart-panel {
+        width: 280px;
+    }
+
+    .floating-cart-button {
+        padding: 12px 16px;
+    }
+}

@@ -1,5 +1,6 @@
 from decimal import Decimal
-from menu.models import Product, Option
+
+from menu.models import Option, Product
 
 
 class Cart:
@@ -7,36 +8,43 @@ class Cart:
 
     def __init__(self, request):
         self.session = request.session
-        self.cart = self.session.get(self.SESSION_KEY, {})
-        if self.SESSION_KEY not in self.session:
-            self.session[self.SESSION_KEY] = self.cart
+        cart = self.session.get(self.SESSION_KEY)
+
+        if not cart:
+            cart = {}
+            self.session[self.SESSION_KEY] = cart
+
+        self.cart = cart
 
     def _build_key(self, product_id, option_ids):
-        normalized = sorted(str(option_id) for option_id in option_ids)
-        suffix = "-".join(normalized)
+        normalized_option_ids = sorted(str(option_id) for option_id in option_ids)
+        suffix = "-".join(normalized_option_ids)
         return f"{product_id}:{suffix}"
 
     def add(self, product_id, quantity=1, option_ids=None):
         option_ids = option_ids or []
-        key = self._build_key(product_id, option_ids)
+        item_key = self._build_key(product_id, option_ids)
 
-        if key in self.cart:
-            self.cart[key]["quantity"] += quantity
+        if item_key in self.cart:
+            self.cart[item_key]["quantity"] += int(quantity)
         else:
-            self.cart[key] = {
-                "product_id": product_id,
-                "quantity": quantity,
-                "option_ids": sorted(option_ids),
+            self.cart[item_key] = {
+                "product_id": int(product_id),
+                "quantity": int(quantity),
+                "option_ids": [int(option_id) for option_id in option_ids],
             }
 
         self.save()
 
     def update(self, item_key, quantity):
         if item_key in self.cart:
+            quantity = int(quantity)
+
             if quantity > 0:
                 self.cart[item_key]["quantity"] = quantity
             else:
                 del self.cart[item_key]
+
             self.save()
 
     def remove(self, item_key):
@@ -65,19 +73,37 @@ class Cart:
             except Product.DoesNotExist:
                 continue
 
-            options = list(Option.objects.filter(id__in=item["option_ids"], is_active=True))
-            option_total = sum((option.extra_price for option in options), Decimal("0.00"))
-            unit_price = product.price + option_total
-            line_total = unit_price * item["quantity"]
+            option_ids = item.get("option_ids", [])
+            options = list(Option.objects.filter(id__in=option_ids, is_active=True))
+
+            options_total = sum((option.extra_price for option in options), Decimal("0.00"))
+            unit_price = product.price + options_total
+            quantity = int(item["quantity"])
+            line_total = unit_price * quantity
+
             grand_total += line_total
 
             items.append({
                 "key": item_key,
                 "product": product,
-                "quantity": item["quantity"],
+                "quantity": quantity,
                 "options": options,
                 "unit_price": unit_price,
                 "line_total": line_total,
             })
 
         return items, grand_total
+
+
+def cart_summary(request):
+    cart = Cart(request)
+    items, grand_total = cart.get_items()
+
+    total_quantity = sum(item["quantity"] for item in items)
+
+    return {
+        "items": items,
+        "total_quantity": total_quantity,
+        "grand_total": grand_total,
+        "is_empty": len(items) == 0,
+    }
