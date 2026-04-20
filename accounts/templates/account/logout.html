@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Sign Out – Hungry Burger{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+
+    <div class="auth-card">
+      <div class="auth-header">
+        <img src="{% static 'menu/LOGO.png' %}" alt="Hungry Burger" class="auth-logo">
+        <h1 class="auth-title">Sign Out</h1>
+        <p class="auth-subtitle">We'll miss you!</p>
+      </div>
+
+      <div class="auth-body">
+        <p class="logout-message">Are you sure you want to sign out?</p>
+
+        <form method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="btn-auth">Yes, Sign Out</button>
+        </form>
+
+        <a href="/" class="btn-auth-outline">Cancel</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.auth-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  overflow: hidden;
+  margin: 24px auto;
+}
+
+.auth-header {
+  background: linear-gradient(135deg, #e67e22 0%, #ca6f1e 100%);
+  padding: 36px 40px 28px;
+  text-align: center;
+}
+
+.auth-logo {
+  height: 64px;
+  width: auto;
+  margin-bottom: 12px;
+  filter: brightness(0) invert(1);
+}
+
+.auth-title {
+  color: #ffffff;
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.auth-subtitle {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.auth-body {
+  padding: 32px 40px 36px;
+  text-align: center;
+}
+
+.logout-message {
+  font-size: 1rem;
+  color: #1a1a1a;
+  margin-bottom: 24px;
+}
+
+.btn-auth {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #e67e22;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-bottom: 12px;
+  text-decoration: none;
+}
+
+.btn-auth:hover {
+  background-color: #ca6f1e;
+  transform: translateY(-1px);
+  color: #ffffff;
+}
+
+.btn-auth-outline {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: transparent;
+  color: #e67e22;
+  border: 2px solid #e67e22;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.btn-auth-outline:hover {
+  background-color: #e67e22;
+  color: #ffffff;
+}
+</style>
+{% endblock %}
