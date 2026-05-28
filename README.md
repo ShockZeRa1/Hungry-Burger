@@ -18,6 +18,8 @@ OrderStatus: You need this registered so you can define the different stages of 
 
 RestaurantTable: Register this so the manager can manage the physical tables where customers sit.
 
+“To load sample data: python manage.py loaddata data_dump.json”
+
 2. Menu Management Models
 These allow the manager to fulfill the "admin side" requirement of adding, removing, and editing items:
 
