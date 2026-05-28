@@ -29,16 +29,177 @@
         </div>
         {% endfor %}
 
-        <div class="d-flex justify-content-between align-items-center pt-4">
-            <h4 class="mb-0">Grand Total</h4>
-            <h4 class="mb-0">kr {{ grand_total }}</h4>
+        <div class="pt-4">
+            <div class="d-flex justify-content-between">
+                <h5>Subtotal</h5>
+                <h5>kr <span id="subtotalAmount">{{ grand_total }}</span></h5>
+            </div>
+
+            <div id="discountRow" class="d-flex justify-content-between text-success {% if not discount_amount %}d-none{% endif %}">
+                <h5>Discount</h5>
+                <h5>- kr <span id="discountAmount">{{ discount_amount }}</span></h5>
+            </div>
+
+            <div class="d-flex justify-content-between border-top pt-3 mt-3">
+                <h4>Final Total</h4>
+                <h4>kr <span id="finalTotalAmount">{{ final_total }}</span></h4>
+            </div>
         </div>
 
         <form method="POST" class="mt-4">
             {% csrf_token %}
+
+            {% if not user.is_authenticated %}
+            <div class="border rounded p-3 mb-4 bg-light">
+                <h5 class="mb-3">Guest Information</h5>
+
+                <div class="mb-3">
+                    <label for="guest_name" class="form-label">Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="guest_name"
+                        name="guest_name"
+                        required
+                    >
+                </div>
+
+                <div class="mb-3">
+                    <label for="guest_email" class="form-label">Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="guest_email"
+                        name="guest_email"
+                        required
+                    >
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="mb-4">
+                <label for="discount_code" class="form-label fw-bold">Discount Code</label>
+
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="discount_code"
+                        name="discount_code"
+                        value="{{ discount_code_input }}"
+                        placeholder="Example: BURGER10"
+                    >
+                    <button
+                        type="button"
+                        class="btn btn-outline-success"
+                        id="activateDiscountButton"
+                    >
+                        Activate
+                    </button>
+                </div>
+
+                <div class="form-text">
+                    Enter a valid promo code and click Activate before placing your order.
+                </div>
+
+                <div id="discountMessage" class="mt-2"></div>
+            </div>
+
+            <div class="mb-4">
+                <label for="customer_note" class="form-label fw-bold">
+                    Special Instructions
+                </label>
+                <textarea
+                    class="form-control"
+                    id="customer_note"
+                    name="customer_note"
+                    rows="4"
+                    placeholder="Example: No onions, extra ketchup, call me when the order is ready..."
+                ></textarea>
+            </div>
+
             <button type="submit" class="btn btn-success">Place Order</button>
             <a href="{% url 'cart' %}" class="btn btn-outline-secondary">Back to Cart</a>
         </form>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const activateButton = document.getElementById("activateDiscountButton");
+        const discountInput = document.getElementById("discount_code");
+        const discountMessage = document.getElementById("discountMessage");
+        const discountRow = document.getElementById("discountRow");
+        const discountAmount = document.getElementById("discountAmount");
+        const finalTotalAmount = document.getElementById("finalTotalAmount");
+
+        function getCsrfToken() {
+            const csrfInput = document.querySelector("input[name='csrfmiddlewaretoken']");
+            return csrfInput ? csrfInput.value : "";
+        }
+
+        activateButton.addEventListener("click", function () {
+            const code = discountInput.value.trim();
+
+            discountMessage.innerHTML = "";
+            activateButton.disabled = true;
+            activateButton.textContent = "Checking...";
+
+            fetch("{% url 'apply_discount' %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": getCsrfToken(),
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    "discount_code": code,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    discountRow.classList.remove("d-none");
+                    discountAmount.textContent = data.discount_amount;
+                    finalTotalAmount.textContent = data.final_total;
+
+                    discountMessage.innerHTML = `
+                        <div class="alert alert-success py-2 mb-0">
+                            ${data.message}
+                        </div>
+                    `;
+
+                    activateButton.textContent = "Activated";
+                    activateButton.classList.remove("btn-outline-success");
+                    activateButton.classList.add("btn-success");
+                } else {
+                    discountRow.classList.add("d-none");
+                    discountAmount.textContent = "0.00";
+                    finalTotalAmount.textContent = data.final_total;
+
+                    discountMessage.innerHTML = `
+                        <div class="alert alert-danger py-2 mb-0">
+                            ${data.message}
+                        </div>
+                    `;
+
+                    activateButton.textContent = "Activate";
+                    activateButton.classList.remove("btn-success");
+                    activateButton.classList.add("btn-outline-success");
+                }
+            })
+            .catch(() => {
+                discountMessage.innerHTML = `
+                    <div class="alert alert-danger py-2 mb-0">
+                        Something went wrong while checking the discount code.
+                    </div>
+                `;
+
+                activateButton.textContent = "Activate";
+            })
+            .finally(() => {
+                activateButton.disabled = false;
+            });
+        });
+    });
+</script>
 {% endblock %}
