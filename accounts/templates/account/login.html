@@ -18,21 +18,21 @@
         <form method="post" action="{% url 'account_login' %}">
           {% csrf_token %}
 
-          {% if form.errors %}
+          {% if error %}
           <div class="auth-alert">
-            Please correct the errors below.
+            {{error}}
           </div>
           {% endif %}
 
-          {% for field in form %}
           <div class="auth-field">
-            <label class="auth-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
-            {% if field.errors %}
-            <div class="auth-field-error">{{ field.errors|join:", " }}</div>
-            {% endif %}
+            <label class="auth-label" for="username">Username</label>
+            <input type="text" name="username" id="username" value="{{ username }}" placeholder="Username">
           </div>
-          {% endfor %}
+
+          <div class="auth-field">
+            <label class="auth-label" for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password">
+          </div>
 
           {% if redirect_field_value %}
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
