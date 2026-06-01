@@ -157,5 +157,5 @@ ACCOUNT_LOGIN_METHODS= {'username'}
 ACCOUNT_SIGNUP_FIELDS= ['username*', 'email*', 'password1*', 'password2*']
 
 ACCOUNT_SIGNUP_FORM_CLASS= 'accounts.forms.SignUpForm'
-ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
