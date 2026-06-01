@@ -14,7 +14,6 @@ class Category(models.Model):
         return self.name
 
 
-
 # The individual items that are sold
 class Product(models.Model):
     name = models.CharField(max_length=255, unique=True) # Assuming each product has a unique name
@@ -32,6 +31,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
    
+
 # Provides options (e.g. to choose amount of patties the customer wants) 
 class OptionGroup(models.Model):
     name = models.CharField(max_length=255, unique=True)    
@@ -45,14 +45,6 @@ class OptionGroup(models.Model):
     
     def __str__(self):
         return self.name
-
-# ALTERNATIVE for the above if ever needed
-
-#     SELECTION_CHOICES = [
-#       ('SINGLE', 'Single Selection (Radio)'),
-#       ('MULTIPLE', 'Multiple Selection (Checkbox)'),
-#    ]
-#    selection_type = models.CharField(max_length=255, choices=SELECTION_CHOICES, default='Single')
 
 
 # Choices to make between e.g. beef, chicken or vegan burger
