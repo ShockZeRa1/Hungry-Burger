@@ -60,4 +60,9 @@ class OrderItemAdmin(admin.ModelAdmin):
 
 @admin.register(OrderItemOption)
 class OrderItemOptionAdmin(admin.ModelAdmin):
-    list_display = ("id", "order_item", "option_name_snapshot", "extra_price_snapshot")
+    list_display = ("id", "get_order", "order_item","option_name_snapshot", "extra_price_snapshot")
+    
+    def get_order(self, obj):
+        return obj.order_item.order
+    get_order.short_description = "Order"
+    get_order.admin_order_field = "order_item__order"
