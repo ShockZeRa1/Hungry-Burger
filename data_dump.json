@@ -1,5 +1,37 @@
 [
 {
+  "model": "orders.orderstatus",
+  "pk": 1,
+  "fields": {
+    "name": "Order Placed",
+    "is_active": true
+  }
+},
+{
+  "model": "orders.orderstatus",
+  "pk": 2,
+  "fields": {
+    "name": "Preparing",
+    "is_active": true
+  }
+},
+{
+  "model": "orders.orderstatus",
+  "pk": 3,
+  "fields": {
+    "name": "Ready for Pickup",
+    "is_active": true
+  }
+},
+{
+  "model": "orders.orderstatus",
+  "pk": 4,
+  "fields": {
+    "name": "Picked up",
+    "is_active": true
+  }
+},
+{
   "model": "orders.discountcode",
   "pk": 1,
   "fields": {
@@ -8,9 +40,157 @@
     "value": "10.00",
     "min_order_amount": "0.00",
     "max_uses": null,
-    "used_count": 0,
+    "used_count": 2,
     "valid_until": "2026-06-30T12:00:00Z",
     "is_active": true
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 1,
+  "fields": {
+    "order_type": "pickup",
+    "total_amount": "360.00",
+    "discount_code": 1,
+    "discount_amount": "40.00",
+    "customer_note": "",
+    "guest_name": null,
+    "guest_email": null,
+    "created_at": "2026-06-03T17:25:29.507Z",
+    "customer": 1,
+    "status": 1
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 2,
+  "fields": {
+    "order_type": "pickup",
+    "total_amount": "360.00",
+    "discount_code": 1,
+    "discount_amount": "40.00",
+    "customer_note": "",
+    "guest_name": null,
+    "guest_email": null,
+    "created_at": "2026-06-03T17:25:48.865Z",
+    "customer": 1,
+    "status": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 1,
+  "fields": {
+    "quantity": 1,
+    "order": 1,
+    "product": 4,
+    "product_name_snapshot": "Classic Burger",
+    "unit_price_snapshot": "150.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 2,
+  "fields": {
+    "quantity": 1,
+    "order": 1,
+    "product": 14,
+    "product_name_snapshot": "Loaded Parmesan Fries",
+    "unit_price_snapshot": "100.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 3,
+  "fields": {
+    "quantity": 1,
+    "order": 2,
+    "product": 4,
+    "product_name_snapshot": "Classic Burger",
+    "unit_price_snapshot": "150.00"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 4,
+  "fields": {
+    "quantity": 1,
+    "order": 2,
+    "product": 14,
+    "product_name_snapshot": "Loaded Parmesan Fries",
+    "unit_price_snapshot": "100.00"
+  }
+},
+{
+  "model": "orders.orderitemoption",
+  "pk": 1,
+  "fields": {
+    "option_name_snapshot": "Extra Patty",
+    "extra_price_snapshot": "40.00",
+    "order_item": 1
+  }
+},
+{
+  "model": "orders.orderitemoption",
+  "pk": 2,
+  "fields": {
+    "option_name_snapshot": "Extra Cheese",
+    "extra_price_snapshot": "20.00",
+    "order_item": 1
+  }
+},
+{
+  "model": "orders.orderitemoption",
+  "pk": 3,
+  "fields": {
+    "option_name_snapshot": "Chili Cheese",
+    "extra_price_snapshot": "55.00",
+    "order_item": 1
+  }
+},
+{
+  "model": "orders.orderitemoption",
+  "pk": 4,
+  "fields": {
+    "option_name_snapshot": "Sriracha Mayo",
+    "extra_price_snapshot": "35.00",
+    "order_item": 1
+  }
+},
+{
+  "model": "orders.orderitemoption",
+  "pk": 5,
+  "fields": {
+    "option_name_snapshot": "Extra Patty",
+    "extra_price_snapshot": "40.00",
+    "order_item": 3
+  }
+},
+{
+  "model": "orders.orderitemoption",
+  "pk": 6,
+  "fields": {
+    "option_name_snapshot": "Extra Cheese",
+    "extra_price_snapshot": "20.00",
+    "order_item": 3
+  }
+},
+{
+  "model": "orders.orderitemoption",
+  "pk": 7,
+  "fields": {
+    "option_name_snapshot": "Chili Cheese",
+    "extra_price_snapshot": "55.00",
+    "order_item": 3
+  }
+},
+{
+  "model": "orders.orderitemoption",
+  "pk": 8,
+  "fields": {
+    "option_name_snapshot": "Sriracha Mayo",
+    "extra_price_snapshot": "35.00",
+    "order_item": 3
   }
 },
 {
@@ -748,7 +928,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$1200000$dE8dDmZJ6hg6RGxpuIjPT1$EeiqyMSnHK7f7L/gEY/vUUsMUQkoQrh5w4hUE9Odtxo=",
-    "last_login": "2026-05-28T14:46:17.023Z",
+    "last_login": "2026-06-03T17:24:26.335Z",
     "is_superuser": true,
     "username": "yousuf",
     "first_name": "",
