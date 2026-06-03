@@ -147,16 +147,16 @@ def checkout_view(request):
         guest_email = request.POST.get("guest_email", "").strip()
         discount_code_input = request.POST.get("discount_code", "").strip()
 
-        discount_code, discount_amount, discount_error = validate_discount_code(
-            discount_code_input,
-            grand_total,
-        )
-
-        if discount_error:
-            messages.error(request, discount_error)
-            return redirect("checkout")
-
-        final_total = grand_total - discount_amount
+        if discount_code_input:
+            discount_code, discount_amount, discount_error = validate_discount_code(
+                discount_code_input,
+                grand_total,
+            )
+            
+            if discount_error:
+                messages.error(request, discount_error)
+                return redirect("checkout")
+            final_total = grand_total - discount_amount
 
         if not request.user.is_authenticated:
             if not guest_name or not guest_email:

@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
-# Create your views here.
+# Custom login view that provides specific error messages to determine whether username or password was incorrectly entered
 def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -18,7 +18,7 @@ def login_view(request):
                 error = "Incorrect password, please try again."
             
         except User.DoesNotExist:
-            error = f"The username '{username}' was not found in our records. Sign up if you haven't'"
+            error = f"The username '{username}' was not found in our records. Sign up if you haven't."
 
         return render(request, "account/login.html", {
             "username": username,
