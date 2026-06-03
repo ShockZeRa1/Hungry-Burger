@@ -164,7 +164,7 @@ def checkout_view(request):
                 return redirect("checkout")
 
         status, _ = OrderStatus.objects.get_or_create(
-            name="Order placed",
+            name="Order Placed",
             defaults={"is_active": True},
         )
 
@@ -216,7 +216,7 @@ def checkout_view(request):
 
 
 @login_required
-def past_orders_view(request):
+def past_orders_view(request):  
     orders = (
         Order.objects.filter(customer=request.user)
         .prefetch_related("orderitem_set__orderitemoption_set")
