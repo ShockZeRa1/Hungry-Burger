@@ -130,7 +130,7 @@ JAZZMIN_SETTINGS = {
     "site_title": "Hungry Burger",
     "site_header": "Hungry Burger",
     "site_brand": "🍔 Hungry Burger",
-    "welcome_sign": "Welcome to Hungery Burger Admin",
+    "welcome_sign": "Welcome to Hungry Burger Admin",
     "copyright": "Hungry Burger 2026",}
 
 

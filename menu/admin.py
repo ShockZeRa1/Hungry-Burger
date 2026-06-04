@@ -48,9 +48,9 @@ class ProductAdmin(admin.ModelAdmin):
     def units_sold(self, obj):
         result = OrderItem.objects.filter(product=obj).aggregate(total=Sum('quantity'))
         return result['total'] or 0
-    units_sold.shirt_description = 'Units sold'
+    units_sold.short_description = 'Units sold'
 
-    def revenue(self, obj):
+    def revenue(self, obj): 
         items = OrderItem.objects.filter(product=obj)
         total = 0
         for item in items:
